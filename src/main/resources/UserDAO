@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="es.care.sf.usermanagementservice.infrastructure.repository.UserDBOMapper">
+
+    <resultMap id="UserResultMap" type="com.mvillafuertem.usermicroservice.infrastructure.model.UserDBO">
+
+        <id column="id"
+            jdbcType="INTEGER"
+            property="id"/>
+
+        <result column="userId"
+                jdbcType="VARCHAR"
+                property="email"/>
+
+        <result column="email"
+                jdbcType="VARCHAR"
+                property="email"/>
+
+        <result column="lastname"
+                jdbcType="VARCHAR"
+                property="accountNotExpired"/>
+
+        <result column="name"
+                jdbcType="VARCHAR"
+                property="accountNotExpired"/>
+
+    </resultMap>
+
+</mapper>
