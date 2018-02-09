@@ -1,0 +1,35 @@
+@startuml
+
+!include villafuerte.puml
+
+
+package "application" #c0f0e0 {
+    () NewUser
+    () GetUser
+}
+
+package "configuration" #e0c0f0 {
+  frame " application"
+  frame " domain"
+  frame " infrastructure"
+  frame " rest"
+
+}
+
+package "domain" {
+    [User]
+    () Repository
+}
+
+package "infrastructure" #c0e0f0 {
+  () ToDomain --> [MapperInfrastructure]
+  [UserDAO]
+}
+
+package "rest" {
+  () API -->[UserController]
+  () ToAPI --> [MapperRest]
+  [UserResponse]
+}
+
+@enduml

@@ -1,0 +1,28 @@
+= Microservices
+:author: Miguel Villafuerte
+:email: mivimur@hotmail.com
+:revnumber: v1.0
+:revdate: 9 February 2018
+:version-label!:
+:toc: left
+:toclevels: 3
+:sectnums:
+:chapter-label:
+:icons: font
+:source-highlighter: coderay
+:pygments-linenums-mode: inline
+:experimental:
+:doctype: book
+:imagesdir: resources/images
+
+
+PoC
+
+
+[plantuml, diagrama, svg, align="center"]
+.User Microservice
+----
+
+include::src/docs/plantuml/usermicroservice.puml[]
+
+----
