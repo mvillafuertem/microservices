@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="es.care.sf.usermanagementservice.infrastructure.repository.UserDBOMapper">
+<mapper namespace="com.mvillafuertem.usermicroservice.infrastructure.dao.UserDAO">
 
     <resultMap id="UserResultMap" type="com.mvillafuertem.usermicroservice.infrastructure.model.UserDBO">
 
@@ -18,11 +18,11 @@
 
         <result column="lastname"
                 jdbcType="VARCHAR"
-                property="accountNotExpired"/>
+                property="lastname"/>
 
         <result column="name"
                 jdbcType="VARCHAR"
-                property="accountNotExpired"/>
+                property="name"/>
 
     </resultMap>
 
