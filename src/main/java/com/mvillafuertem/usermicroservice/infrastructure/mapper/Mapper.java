@@ -3,9 +3,9 @@ package com.mvillafuertem.usermicroservice.infrastructure.mapper;
 import com.mvillafuertem.usermicroservice.domain.model.User;
 import com.mvillafuertem.usermicroservice.infrastructure.model.UserDBO;
 
-public class DomainUser implements ToDomain<UserDBO, User> {
+public class Mapper implements ToDomain<UserDBO, User> {
     @Override
-    public User mapInfra(final UserDBO source) {
+    public User mapInfrastructure(final UserDBO source) {
         return User.builder()
                 .userId(source.getUserId())
                 .email(source.getEmail())

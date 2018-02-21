@@ -2,6 +2,6 @@ package com.mvillafuertem.usermicroservice.infrastructure.mapper;
 
 public interface ToDomain<I, D> {
 
-    D mapInfra(I infrastructureSource);
+    D mapInfrastructure(I infrastructureSource);
     I mapDomain(D domainSource);
 }
