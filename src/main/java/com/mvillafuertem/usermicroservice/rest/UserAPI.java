@@ -5,7 +5,7 @@ import com.mvillafuertem.usermicroservice.domain.model.User;
 
 public interface UserAPI {
 
-    UserResponse createNewUserWithEmail(final User user);
+    UserResponse createNewUserWithEmail(final UserResponse user);
 
     UserResponse getUser(final Long userId);
 
