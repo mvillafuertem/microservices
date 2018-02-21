@@ -10,7 +10,7 @@
 
         <result column="userId"
                 jdbcType="VARCHAR"
-                property="email"/>
+                property="userId"/>
 
         <result column="email"
                 jdbcType="VARCHAR"
