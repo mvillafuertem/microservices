@@ -4,5 +4,5 @@ import com.mvillafuertem.usermicroservice.domain.model.User;
 
 public interface CreateNewUser {
 
-    Long createNewUserWithEmail(User user);
+    User createNewUserWithEmail(User user);
 }
