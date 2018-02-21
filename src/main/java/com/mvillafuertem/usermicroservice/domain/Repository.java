@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface Repository {
 
-    Long insert(User user);
+    User insert(User user);
     Optional<User> findById(Long userId);
 }
 

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class UserRepository implements Repository {
     @Override
-    public Long insert(final User user) {
+    public User insert(final User user) {
         return null;
     }
 
