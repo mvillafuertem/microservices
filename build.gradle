@@ -17,6 +17,8 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
+apply from: 'gradle/docs.gradle'
+
 group = 'com.mvillafuertem'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
@@ -50,4 +52,9 @@ dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.5.1'
+    //distributionUrl = distributionUrl.replace("bin", "all")
 }
