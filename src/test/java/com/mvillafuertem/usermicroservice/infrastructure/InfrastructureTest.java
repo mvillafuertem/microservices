@@ -15,8 +15,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import static org.junit.Assert.*;
@@ -44,22 +46,21 @@ public class InfrastructureTest {
         mongoTemplate.dropCollection(COLLECTION_NAME);
     }
 
-    public void create() {
+    public void create() throws IOException {
 
         readLines(resource).stream()
                 .map(jsonTransaction -> (DBObject) JSON.parse(jsonTransaction))
                 .forEach(transaction -> mongoTemplate.save(transaction, COLLECTION_NAME));
     }
 
-    private List<String> readLines(Resource resource) {
-        List<String> lines;
-        try (Scanner scanner = new Scanner(resource.getInputStream())) {
-            lines = readAllLines(scanner);
-        } catch (IOException e) {
-            throw new RuntimeException("Can't read the resource file", e);
-        }
+    private List<String> readLines(Resource resource) throws IOException {
 
-        return lines;
+        final InputStream inputStream = Optional.of(resource.getInputStream())
+                .orElseThrow(() -> new IOException("Can't read the resource file"));
+
+        final Scanner scanner = new Scanner(inputStream);
+
+        return readAllLines(scanner);
     }
 
     private List<String> readAllLines(final Scanner scanner) {
