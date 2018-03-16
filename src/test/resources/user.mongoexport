@@ -1,0 +1,1 @@
+{"_id":{"$oid":"59f072dcb9d4530006787000"},"_class":"com.mvillafuertem.usermicroservice.domain.model.User","userId":1,"email":"pepepipo@correo.com","lastname":"Pepe","name":"Pipo"}

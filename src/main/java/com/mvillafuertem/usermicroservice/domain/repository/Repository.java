@@ -1,4 +1,4 @@
-package com.mvillafuertem.usermicroservice.domain;
+package com.mvillafuertem.usermicroservice.domain.repository;
 
 import com.mvillafuertem.usermicroservice.domain.model.User;
 

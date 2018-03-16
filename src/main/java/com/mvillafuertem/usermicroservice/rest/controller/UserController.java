@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@RestController("/users")
+@RestController
+@RequestMapping("/users")
 @Slf4j
 public class UserController implements UserAPI {
 
@@ -44,7 +45,6 @@ public class UserController implements UserAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/{userId}",
-            consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
     @Override
     public UserResponse getUser(@PathVariable final Long userId) {
