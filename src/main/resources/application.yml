@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: "Production"
+  application:
+      name: "User Management Service"
+
+info:
+  app:
+    name: "User Management Service"
+    description: "This is my first spring boot application"
+    version: "1.0.0"
+
+management:
+  endpoints:
+    web:
+      expose: "*"
+
+logging:
+  level:
+    com.mvillafuertem.usermicroservice.rest.controller.UserController: DEBUG
