@@ -3,6 +3,14 @@ spring:
     active: "Production"
   application:
       name: "User Management Service"
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: admin
+      username: foouser
+      password: foopwd
+
 
 info:
   app:
@@ -10,11 +18,11 @@ info:
     description: "This is my first spring boot application"
     version: "1.0.0"
 
-management:
-  endpoints:
-    web:
-      expose: "*"
+#management:
+#  endpoints:
+#    web:
+#      expose: "*"
 
 logging:
   level:
-    com.mvillafuertem.usermicroservice.rest.controller.UserController: DEBUG
+    com.mvillafuertem.usermanagementservice.rest.controller.UserController: DEBUG

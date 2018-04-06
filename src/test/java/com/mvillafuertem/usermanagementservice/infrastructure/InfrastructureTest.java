@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.Scanner;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("develop")
+@ActiveProfiles("Develop")
 @SpringBootTest
 public abstract class InfrastructureTest {
 

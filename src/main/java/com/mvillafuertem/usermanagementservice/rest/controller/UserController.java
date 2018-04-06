@@ -31,14 +31,18 @@ public class UserController implements UserAPI {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping(path = "/",
+    @PutMapping(
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
     @Override
-    public UserResponse createNewUserWithEmail(final UserResponse userResponse) {
+    public UserResponse createNewUserWithEmail(@RequestBody final UserResponse userResponse) {
+
+        log.debug("UserController request createNewUserWithEmail with data {}", userResponse);
 
         final User user = apiToDomainMapper.mapRest(userResponse);
         final User userCreated = createNewUser.createNewUserWithEmail(user);
+
+        log.debug("UserController response createNewUserWithEmail with data {}", userResponse);
 
         return apiToDomainMapper.mapApplication(userCreated);
     }
@@ -49,10 +53,12 @@ public class UserController implements UserAPI {
     @Override
     public UserResponse getUser(@PathVariable final Long userId) {
 
-        log.debug("Application getUser {}", userId);
+        log.debug("UserController request getUser with userId {}", userId);
 
         final User user = getUser.getUserInfoById(userId);
+        final UserResponse userResponse = apiToDomainMapper.mapApplication(user);
 
-        return apiToDomainMapper.mapApplication(user);
+        log.debug("UserController response getUser with user {}", userResponse);
+        return userResponse;
     }
 }

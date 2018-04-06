@@ -1,16 +1,18 @@
 package com.mvillafuertem.usermanagementservice.rest.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 @Data
-@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class UserResponse {
 
-    private final Long userId;
-    private final String email;
-    private final String lastname;
-    private final String name;
+    private Long userId;
+    private String email;
+    private String lastname;
+    private String name;
 }

@@ -17,9 +17,10 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 @Slf4j
 public class MongoDBUserRepository implements UserRepository {
 
+    private static final String COLLECTION_NAME = "users";
+
     private final MongoTemplate mongoTemplate;
     private final InfrastructureToDomain<UserDBO, User> mapper;
-    private final String COLLECTION_NAME = "users";
 
     public MongoDBUserRepository(final MongoTemplate mongoTemplate,
                                  final InfrastructureToDomain<UserDBO, User> mapper) {
@@ -30,7 +31,7 @@ public class MongoDBUserRepository implements UserRepository {
     @Override
     public User insert(final User user) {
         final UserDBO userDBO = mapper.mapDomain(user);
-        mongoTemplate.insert(userDBO, COLLECTION_NAME);
+        mongoTemplate.save(userDBO, COLLECTION_NAME);
         return user;
     }
 
