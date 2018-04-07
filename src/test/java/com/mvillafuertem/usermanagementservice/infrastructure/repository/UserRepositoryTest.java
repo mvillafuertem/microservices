@@ -2,6 +2,7 @@ package com.mvillafuertem.usermanagementservice.infrastructure.repository;
 
 import com.mvillafuertem.usermanagementservice.domain.model.User;
 import com.mvillafuertem.usermanagementservice.infrastructure.InfrastructureTest;
+import com.mvillafuertem.usermanagementservice.infrastructure.repository.norelational.MongoDBUserRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

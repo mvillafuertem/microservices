@@ -6,7 +6,7 @@ import com.mvillafuertem.usermanagementservice.domain.repository.UserRepository;
 import com.mvillafuertem.usermanagementservice.infrastructure.mapper.InfrastructureToDomain;
 import com.mvillafuertem.usermanagementservice.infrastructure.mapper.MapperInfrastructure;
 import com.mvillafuertem.usermanagementservice.infrastructure.model.UserDBO;
-import com.mvillafuertem.usermanagementservice.infrastructure.repository.MongoDBUserRepository;
+import com.mvillafuertem.usermanagementservice.infrastructure.repository.norelational.MongoDBUserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

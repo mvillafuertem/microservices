@@ -5,6 +5,8 @@ import com.mvillafuertem.usermanagementservice.domain.model.User;
 import com.mvillafuertem.usermanagementservice.domain.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 @Slf4j
 public class GetUserImpl implements GetUser {
 
@@ -17,5 +19,10 @@ public class GetUserImpl implements GetUser {
     @Override
     public User getUserInfoById(final Long id) {
         return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<User> getUsersInfoFindAll() {
+        return repository.findAll();
     }
 }

@@ -10,6 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -60,5 +63,21 @@ public class UserController implements UserAPI {
 
         log.debug("UserController response getUser with user {}", userResponse);
         return userResponse;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(path = "/",
+            produces = APPLICATION_JSON_VALUE)
+    @Override
+    public List<UserResponse> getUsers() {
+
+        log.debug("UserController request getUsers");
+
+        final List<UserResponse> responseList = getUser.getUsersInfoFindAll().stream()
+                .map(apiToDomainMapper::mapApplication)
+                .collect(toList());
+
+        log.debug("UserController response getUser with user {}", responseList);
+        return responseList;
     }
 }

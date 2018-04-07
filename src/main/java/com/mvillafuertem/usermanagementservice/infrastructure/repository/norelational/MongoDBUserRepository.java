@@ -1,4 +1,4 @@
-package com.mvillafuertem.usermanagementservice.infrastructure.repository;
+package com.mvillafuertem.usermanagementservice.infrastructure.repository.norelational;
 
 import com.mvillafuertem.usermanagementservice.domain.model.User;
 import com.mvillafuertem.usermanagementservice.domain.repository.UserRepository;
@@ -6,18 +6,17 @@ import com.mvillafuertem.usermanagementservice.infrastructure.mapper.Infrastruct
 import com.mvillafuertem.usermanagementservice.infrastructure.model.UserDBO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toList;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @Slf4j
 public class MongoDBUserRepository implements UserRepository {
-
-    private static final String COLLECTION_NAME = "users";
 
     private final MongoTemplate mongoTemplate;
     private final InfrastructureToDomain<UserDBO, User> mapper;
@@ -30,24 +29,30 @@ public class MongoDBUserRepository implements UserRepository {
 
     @Override
     public User insert(final User user) {
-        final UserDBO userDBO = mapper.mapDomain(user);
-        mongoTemplate.save(userDBO, COLLECTION_NAME);
+        Optional.ofNullable(user)
+                .map(mapper::mapDomain)
+                .ifPresent(mongoTemplate::save);
         return user;
     }
 
     @Override
     public Optional<User> findById(final Long userId) {
 
-        final List<UserDBO> userDBO = mongoTemplate.find(
-                Query.query(whereUserIdIs(userId)),
-                UserDBO.class,
-                COLLECTION_NAME
-        );
-
-        return userDBO.stream().map(mapper::mapInfrastructure).findFirst();
+        return Optional.ofNullable(userId)
+                .map(id -> where("userId").is(id))
+                .map(Query::query)
+                .map(query -> mongoTemplate.find(query, UserDBO.class))
+                .map(List::stream)
+                .flatMap(Stream::findFirst)
+                .map(mapper::mapInfrastructure);
     }
 
-    private static Criteria whereUserIdIs(final Long userId) {
-        return where("userId").is(userId);
+    @Override
+    public List<User> findAll() {
+
+        return mongoTemplate.findAll(UserDBO.class)
+                .stream()
+                .map(mapper::mapInfrastructure)
+                .collect(toList());
     }
 }
