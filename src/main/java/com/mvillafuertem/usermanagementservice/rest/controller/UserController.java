@@ -7,6 +7,7 @@ import com.mvillafuertem.usermanagementservice.rest.UserAPI;
 import com.mvillafuertem.usermanagementservice.rest.mapper.RestToApplication;
 import com.mvillafuertem.usermanagementservice.rest.model.UserResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,8 +67,7 @@ public class UserController implements UserAPI {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(path = "/",
-            produces = APPLICATION_JSON_VALUE)
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     @Override
     public List<UserResponse> getUsers() {
 
@@ -77,7 +77,7 @@ public class UserController implements UserAPI {
                 .map(apiToDomainMapper::mapApplication)
                 .collect(toList());
 
-        log.debug("UserController response getUser with user {}", responseList);
+        log.debug("UserController response getUsers", responseList);
         return responseList;
     }
 }
