@@ -10,6 +10,11 @@ spring:
       database: admin
       username: foouser
       password: foopwd
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name:
 
 
 info:

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import static org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE;
 
 @Configuration
-@ComponentScan(includeFilters = {
+@ComponentScan(excludeFilters = {
         @Filter(type = ASSIGNABLE_TYPE, value = MongoAutoConfiguration.class),
         @Filter(type = ASSIGNABLE_TYPE, value = MongoDataAutoConfiguration.class)})
 public class UserManagementServiceConfiguration {

@@ -9,12 +9,12 @@ import com.mvillafuertem.usermanagementservice.infrastructure.repository.relatio
 import java.util.List;
 import java.util.Optional;
 
-public class OracleUserRepository implements UserRepository {
+public class RelationalDBUserRepository implements UserRepository {
 
     private final InfrastructureToDomain<UserDBO, User> mapper;
     private final UserRepositoryRelationalMapper repositoryRelationalMapper;
 
-    public OracleUserRepository(final InfrastructureToDomain<UserDBO, User> mapper, final UserRepositoryRelationalMapper repositoryRelationalMapper) {
+    public RelationalDBUserRepository(final InfrastructureToDomain<UserDBO, User> mapper, final UserRepositoryRelationalMapper repositoryRelationalMapper) {
         this.mapper = mapper;
         this.repositoryRelationalMapper = repositoryRelationalMapper;
     }

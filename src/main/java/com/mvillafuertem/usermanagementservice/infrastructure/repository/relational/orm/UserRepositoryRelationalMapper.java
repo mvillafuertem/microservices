@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Mapper
-@Component
 public interface UserRepositoryRelationalMapper {
 
     UserDBO insert(final UserDBO user);
