@@ -22,14 +22,14 @@ public class InfrastructureConfiguration {
     public static final String RELATIONAL_USER_REPOSITORY = "RelationalDBUserRepository";
 
     @Bean(name = MONGO_USER_REPOSITORY)
-    public UserRepository userRepository(final MongoTemplate mongoTemplate,
-                                         final InfrastructureToDomain<UserDBO, User> userInfrastructureToDomainMapper) {
+    public UserRepository MongoDBUserRepository(final MongoTemplate mongoTemplate,
+                                                final InfrastructureToDomain<UserDBO, User> userInfrastructureToDomainMapper) {
         return new MongoDBUserRepository(mongoTemplate, userInfrastructureToDomainMapper);
     }
 
     @Bean(name = RELATIONAL_USER_REPOSITORY)
-    public UserRepository userRelationalRepository(final InfrastructureToDomain<UserDBO, User> mapper,
-                                                   final UserRepositoryRelationalMapper relationalRepositoryMapper) {
+    public UserRepository relationalDBUserRepository(final InfrastructureToDomain<UserDBO, User> mapper,
+                                                     final UserRepositoryRelationalMapper relationalRepositoryMapper) {
         return new RelationalDBUserRepository(mapper, relationalRepositoryMapper);
     }
 
