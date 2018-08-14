@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 public class DataSourceConfiguration {
 
     @Bean
-    @ConfigurationProperties("infrastructure.datasource")
+    @ConfigurationProperties("infrastructure.relational.datasource")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }

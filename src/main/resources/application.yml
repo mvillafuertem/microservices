@@ -21,6 +21,16 @@ spring:
   aop:
     auto: false
 
+infrastructure:
+  mongo:
+    database:
+    uri:
+  relational:
+    datasource:
+      url:
+      username:
+      password:
+      driver-class-name:
 
 info:
   app:
