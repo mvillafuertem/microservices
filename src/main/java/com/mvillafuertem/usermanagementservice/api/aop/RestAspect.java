@@ -1,4 +1,4 @@
-package com.mvillafuertem.usermanagementservice.rest.aop;
+package com.mvillafuertem.usermanagementservice.api.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class RestAspect {
 
-    @Around("execution(* com.mvillafuertem.usermanagementservice.rest.controller.UserController.*(..))")
+    @Around("execution(* com.mvillafuertem.usermanagementservice.api.controller.UserController.*(..))")
     public Object restAspectLog(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
         final Object proceed = proceedingJoinPoint.proceed();

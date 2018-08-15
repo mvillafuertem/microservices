@@ -1,7 +1,7 @@
-package com.mvillafuertem.usermanagementservice.rest.mapper;
+package com.mvillafuertem.usermanagementservice.api.mapper;
 
 import com.mvillafuertem.usermanagementservice.domain.model.User;
-import com.mvillafuertem.usermanagementservice.rest.model.UserResponse;
+import com.mvillafuertem.usermanagementservice.api.model.UserResponse;
 
 public class MapperRest implements RestToApplication<UserResponse, User> {
 

@@ -1,6 +1,6 @@
-package com.mvillafuertem.usermanagementservice.rest;
+package com.mvillafuertem.usermanagementservice.api;
 
-import com.mvillafuertem.usermanagementservice.rest.model.UserResponse;
+import com.mvillafuertem.usermanagementservice.api.model.UserResponse;
 
 import java.util.List;
 

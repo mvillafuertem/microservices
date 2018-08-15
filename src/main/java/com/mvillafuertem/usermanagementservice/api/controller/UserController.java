@@ -1,13 +1,12 @@
-package com.mvillafuertem.usermanagementservice.rest.controller;
+package com.mvillafuertem.usermanagementservice.api.controller;
 
 import com.mvillafuertem.usermanagementservice.application.CreateNewUser;
 import com.mvillafuertem.usermanagementservice.application.GetUser;
 import com.mvillafuertem.usermanagementservice.domain.model.User;
-import com.mvillafuertem.usermanagementservice.rest.UserAPI;
-import com.mvillafuertem.usermanagementservice.rest.mapper.RestToApplication;
-import com.mvillafuertem.usermanagementservice.rest.model.UserResponse;
+import com.mvillafuertem.usermanagementservice.api.UserAPI;
+import com.mvillafuertem.usermanagementservice.api.mapper.RestToApplication;
+import com.mvillafuertem.usermanagementservice.api.model.UserResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

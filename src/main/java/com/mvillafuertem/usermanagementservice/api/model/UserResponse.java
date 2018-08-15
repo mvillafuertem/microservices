@@ -1,4 +1,4 @@
-package com.mvillafuertem.usermanagementservice.rest.model;
+package com.mvillafuertem.usermanagementservice.api.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
