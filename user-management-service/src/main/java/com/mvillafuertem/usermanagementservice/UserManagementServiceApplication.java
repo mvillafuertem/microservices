@@ -9,6 +9,6 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 public class UserManagementServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserManagementServiceApplication.class, args);
+		SpringApplication.run(.class, args);
 	}
 }
