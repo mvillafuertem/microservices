@@ -4,6 +4,15 @@ import org.scalatest._
 import org.scalatest.Matchers._
 
 final class ScalaakkaapiTest extends WordSpec with GivenWhenThen {
+  private val routesWithDefinedResponses =
+    get {
+      path("status") {
+        complete(HttpEntity(ContentTypes.`application/json`, """{"status":"ok"}"""))
+      }
+    }
+
+
+
   "Scalaakkaapi" should {
     "greet" in {
       Given("a Scalaakkaapi")
