@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="default"
+		module="product-management-service$sources"
+		revision="0.1"
+		conf="test"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
+		date="20181021000407"/>
+	<dependencies>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.12.7" status="release" pubdate="20180927103542" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.12.7/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="30">
+				<license name="BSD 3-Clause" url="http://www.scala-lang.org/license.html"/>
+				<metadata-artifact status="no" details="" size="2471" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.scala-lang/scala-library/ivy-2.12.7.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.7/scala-library-2.12.7.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.12.7" rev-constraint-default="2.12.7" rev-constraint-dynamic="2.12.7" callerrev="0.1" extra-info.apiURL="http://www.scala-lang.org/api/2.12.7/"/>
+				<artifacts>
+					<artifact name="scala-library" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="991412" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.7-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.7/scala-library-2.12.7-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework.boot" name="spring-boot-starter-web">
+			<revision name="2.0.5.RELEASE" status="release" pubdate="20180912125839" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://projects.spring.io/spring-boot/#/spring-boot-parent/spring-boot-starters/spring-boot-starter-web" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="8">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="148516" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-starter-web/ivy-2.0.5.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-web/2.0.5.RELEASE/spring-boot-starter-web-2.0.5.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.0.5.RELEASE" rev-constraint-default="2.0.5.RELEASE" rev-constraint-dynamic="2.0.5.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-boot-starter-web" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="2364" time="437" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-starter-web/srcs/spring-boot-starter-web-2.0.5.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-web/2.0.5.RELEASE/spring-boot-starter-web-2.0.5.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework.boot" name="spring-boot-starter-tomcat">
+			<revision name="2.0.5.RELEASE" status="release" pubdate="20180912125947" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://projects.spring.io/spring-boot/#/spring-boot-parent/spring-boot-starters/spring-boot-starter-tomcat" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="27">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="148297" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-starter-tomcat/ivy-2.0.5.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-tomcat/2.0.5.RELEASE/spring-boot-starter-tomcat-2.0.5.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.0.5.RELEASE" rev-constraint-default="2.0.5.RELEASE" rev-constraint-dynamic="2.0.5.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-boot-starter-tomcat" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="2404" time="475" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-starter-tomcat/srcs/spring-boot-starter-tomcat-2.0.5.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-tomcat/2.0.5.RELEASE/spring-boot-starter-tomcat-2.0.5.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework.boot" name="spring-boot-starter-json">
+			<revision name="2.0.5.RELEASE" status="release" pubdate="20180912125954" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://projects.spring.io/spring-boot/#/spring-boot-parent/spring-boot-starters/spring-boot-starter-json" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="7">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="148433" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-starter-json/ivy-2.0.5.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-json/2.0.5.RELEASE/spring-boot-starter-json-2.0.5.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.0.5.RELEASE" rev-constraint-default="2.0.5.RELEASE" rev-constraint-dynamic="2.0.5.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-boot-starter-json" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="2398" time="443" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-starter-json/srcs/spring-boot-starter-json-2.0.5.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-json/2.0.5.RELEASE/spring-boot-starter-json-2.0.5.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework.boot" name="spring-boot-starter">
+			<revision name="2.0.5.RELEASE" status="release" pubdate="20180912125915" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://projects.spring.io/spring-boot/#/spring-boot-parent/spring-boot-starters/spring-boot-starter" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="34">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="148398" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-starter/ivy-2.0.5.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter/2.0.5.RELEASE/spring-boot-starter-2.0.5.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.0.5.RELEASE" rev-constraint-default="2.0.5.RELEASE" rev-constraint-dynamic="2.0.5.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-boot-starter" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="2318" time="467" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-starter/srcs/spring-boot-starter-2.0.5.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter/2.0.5.RELEASE/spring-boot-starter-2.0.5.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework.boot" name="spring-boot-starter-logging">
+			<revision name="2.0.5.RELEASE" status="release" pubdate="20180912125908" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://projects.spring.io/spring-boot/#/spring-boot-parent/spring-boot-starters/spring-boot-starter-logging" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="12">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="147905" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-starter-logging/ivy-2.0.5.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-logging/2.0.5.RELEASE/spring-boot-starter-logging-2.0.5.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.0.5.RELEASE" rev-constraint-default="2.0.5.RELEASE" rev-constraint-dynamic="2.0.5.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-boot-starter-logging" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="2361" time="431" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-starter-logging/srcs/spring-boot-starter-logging-2.0.5.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-logging/2.0.5.RELEASE/spring-boot-starter-logging-2.0.5.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.logging.log4j" name="log4j-to-slf4j">
+			<revision name="2.10.0" status="release" pubdate="20171119090848" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="28">
+				<metadata-artifact status="no" details="" size="28631" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.apache.logging.log4j/log4j-to-slf4j/ivy-2.10.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-to-slf4j/2.10.0/log4j-to-slf4j-2.10.0.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="log4j-to-slf4j" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="15765" time="487" location="/Users/mvillafuertem/.ivy2/cache/org.apache.logging.log4j/log4j-to-slf4j/srcs/log4j-to-slf4j-2.10.0-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-to-slf4j/2.10.0/log4j-to-slf4j-2.10.0-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework.boot" name="spring-boot-autoconfigure">
+			<revision name="2.0.5.RELEASE" status="release" pubdate="20180912125959" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://projects.spring.io/spring-boot/#/spring-boot-parent/spring-boot-autoconfigure" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="36">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="166926" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-autoconfigure/ivy-2.0.5.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-autoconfigure/2.0.5.RELEASE/spring-boot-autoconfigure-2.0.5.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.0.5.RELEASE" rev-constraint-default="2.0.5.RELEASE" rev-constraint-dynamic="2.0.5.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-boot-autoconfigure" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="749090" time="504" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot-autoconfigure/srcs/spring-boot-autoconfigure-2.0.5.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-autoconfigure/2.0.5.RELEASE/spring-boot-autoconfigure-2.0.5.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.tomcat.embed" name="tomcat-embed-websocket">
+			<revision name="8.5.34" status="release" pubdate="20180905003900" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://tomcat.apache.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="16">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2720" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.apache.tomcat.embed/tomcat-embed-websocket/ivy-8.5.34.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-websocket/8.5.34/tomcat-embed-websocket-8.5.34.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="8.5.34" rev-constraint-default="8.5.34" rev-constraint-dynamic="8.5.34" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="tomcat-embed-websocket" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="186017" time="635" location="/Users/mvillafuertem/.ivy2/cache/org.apache.tomcat.embed/tomcat-embed-websocket/srcs/tomcat-embed-websocket-8.5.34-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-websocket/8.5.34/tomcat-embed-websocket-8.5.34-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.tomcat.embed" name="tomcat-embed-el">
+			<revision name="8.5.34" status="release" pubdate="20180905003850" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://tomcat.apache.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="26">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2513" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.apache.tomcat.embed/tomcat-embed-el/ivy-8.5.34.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-el/8.5.34/tomcat-embed-el-8.5.34.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="8.5.34" rev-constraint-default="8.5.34" rev-constraint-dynamic="8.5.34" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="tomcat-embed-el" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="190101" time="631" location="/Users/mvillafuertem/.ivy2/cache/org.apache.tomcat.embed/tomcat-embed-el/srcs/tomcat-embed-el-8.5.34-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-el/8.5.34/tomcat-embed-el-8.5.34-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework.boot" name="spring-boot">
+			<revision name="2.0.5.RELEASE" status="release" pubdate="20180912125956" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://projects.spring.io/spring-boot/#/spring-boot-parent/spring-boot" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="14">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="155197" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot/ivy-2.0.5.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot/2.0.5.RELEASE/spring-boot-2.0.5.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.0.5.RELEASE" rev-constraint-default="2.0.5.RELEASE" rev-constraint-dynamic="2.0.5.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-boot" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="697054" time="1016" location="/Users/mvillafuertem/.ivy2/cache/org.springframework.boot/spring-boot/srcs/spring-boot-2.0.5.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/boot/spring-boot/2.0.5.RELEASE/spring-boot-2.0.5.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.yaml" name="snakeyaml">
+			<revision name="1.19" status="release" pubdate="20171014134506" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.snakeyaml.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="24">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="5327" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.yaml/snakeyaml/ivy-1.19.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/yaml/snakeyaml/1.19/snakeyaml-1.19.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="1.19" rev-constraint-default="1.19" rev-constraint-dynamic="1.19" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="snakeyaml" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="188038" time="675" location="/Users/mvillafuertem/.ivy2/cache/org.yaml/snakeyaml/srcs/snakeyaml-1.19-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/yaml/snakeyaml/1.19/snakeyaml-1.19-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework" name="spring-webmvc">
+			<revision name="5.0.9.RELEASE" status="release" pubdate="20180907160254" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/spring-projects/spring-framework" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="20">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="7832" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-webmvc/ivy-5.0.9.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/spring-webmvc/5.0.9.RELEASE/spring-webmvc-5.0.9.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="5.0.9.RELEASE" rev-constraint-default="5.0.9.RELEASE" rev-constraint-dynamic="5.0.9.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-webmvc" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="730153" time="1023" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-webmvc/srcs/spring-webmvc-5.0.9.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/spring-webmvc/5.0.9.RELEASE/spring-webmvc-5.0.9.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework" name="spring-web">
+			<revision name="5.0.9.RELEASE" status="release" pubdate="20180907155204" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/spring-projects/spring-framework" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="9">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="8960" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-web/ivy-5.0.9.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/spring-web/5.0.9.RELEASE/spring-web-5.0.9.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="5.0.9.RELEASE" rev-constraint-default="5.0.9.RELEASE" rev-constraint-dynamic="5.0.9.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-web" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="1056118" time="1161" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-web/srcs/spring-web-5.0.9.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/spring-web/5.0.9.RELEASE/spring-web-5.0.9.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.tomcat.embed" name="tomcat-embed-core">
+			<revision name="8.5.34" status="release" pubdate="20180905003819" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://tomcat.apache.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="10">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2709" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.apache.tomcat.embed/tomcat-embed-core/ivy-8.5.34.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-core/8.5.34/tomcat-embed-core-8.5.34.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="8.5.34" rev-constraint-default="8.5.34" rev-constraint-dynamic="8.5.34" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="tomcat-embed-core" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="2741365" time="1220" location="/Users/mvillafuertem/.ivy2/cache/org.apache.tomcat.embed/tomcat-embed-core/srcs/tomcat-embed-core-8.5.34-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-core/8.5.34/tomcat-embed-core-8.5.34-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="ch.qos.logback" name="logback-classic">
+			<revision name="1.2.3" status="release" pubdate="20170331212753" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="15">
+				<license name="Eclipse Public License - v 1.0" url="http://www.eclipse.org/legal/epl-v10.html"/>
+				<license name="GNU Lesser General Public License" url="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html"/>
+				<metadata-artifact status="no" details="" size="10412" time="0" location="/Users/mvillafuertem/.ivy2/cache/ch.qos.logback/logback-classic/ivy-1.2.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="1.2.3" rev-constraint-default="1.2.3" rev-constraint-dynamic="1.2.3" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="logback-classic" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="230201" time="564" location="/Users/mvillafuertem/.ivy2/cache/ch.qos.logback/logback-classic/srcs/logback-classic-1.2.3-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="ch.qos.logback" name="logback-core">
+			<revision name="1.2.3" status="release" pubdate="20170331212715" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="33">
+				<license name="Eclipse Public License - v 1.0" url="http://www.eclipse.org/legal/epl-v10.html"/>
+				<license name="GNU Lesser General Public License" url="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html"/>
+				<metadata-artifact status="no" details="" size="7917" time="0" location="/Users/mvillafuertem/.ivy2/cache/ch.qos.logback/logback-core/ivy-1.2.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="1.2.3" rev-constraint-default="1.2.3" rev-constraint-dynamic="1.2.3" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="logback-core" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="399141" time="817" location="/Users/mvillafuertem/.ivy2/cache/ch.qos.logback/logback-core/srcs/logback-core-1.2.3-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework" name="spring-context">
+			<revision name="5.0.9.RELEASE" status="release" pubdate="20180907160108" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/spring-projects/spring-framework" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="19">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="5277" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-context/ivy-5.0.9.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/spring-context/5.0.9.RELEASE/spring-context-5.0.9.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="5.0.9.RELEASE" rev-constraint-default="5.0.9.RELEASE" rev-constraint-dynamic="5.0.9.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-context" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="1044064" time="1028" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-context/srcs/spring-context-5.0.9.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/spring-context/5.0.9.RELEASE/spring-context-5.0.9.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework" name="spring-expression">
+			<revision name="5.0.9.RELEASE" status="release" pubdate="20180907155919" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/spring-projects/spring-framework" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="31">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="2738" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-expression/ivy-5.0.9.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/spring-expression/5.0.9.RELEASE/spring-expression-5.0.9.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="5.0.9.RELEASE" rev-constraint-default="5.0.9.RELEASE" rev-constraint-dynamic="5.0.9.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-expression" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="216589" time="641" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-expression/srcs/spring-expression-5.0.9.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/spring-expression/5.0.9.RELEASE/spring-expression-5.0.9.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework" name="spring-aop">
+			<revision name="5.0.9.RELEASE" status="release" pubdate="20180907160253" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/spring-projects/spring-framework" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="13">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="3231" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-aop/ivy-5.0.9.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/spring-aop/5.0.9.RELEASE/spring-aop-5.0.9.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="5.0.9.RELEASE" rev-constraint-default="5.0.9.RELEASE" rev-constraint-dynamic="5.0.9.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-aop" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="358905" time="775" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-aop/srcs/spring-aop-5.0.9.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/spring-aop/5.0.9.RELEASE/spring-aop-5.0.9.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework" name="spring-beans">
+			<revision name="5.0.9.RELEASE" status="release" pubdate="20180907155728" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/spring-projects/spring-framework" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="25">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="3342" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-beans/ivy-5.0.9.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/spring-beans/5.0.9.RELEASE/spring-beans-5.0.9.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="5.0.9.RELEASE" rev-constraint-default="5.0.9.RELEASE" rev-constraint-dynamic="5.0.9.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-beans" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="626238" time="951" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-beans/srcs/spring-beans-5.0.9.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/spring-beans/5.0.9.RELEASE/spring-beans-5.0.9.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="javax.annotation" name="javax.annotation-api">
+			<revision name="1.3.2" status="release" pubdate="20180221112424" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://jcp.org/en/jsr/detail?id=250" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="32">
+				<license name="CDDL + GPLv2 with classpath exception" url="https://github.com/javaee/javax.annotation/blob/master/LICENSE"/>
+				<metadata-artifact status="no" details="" size="4192" time="0" location="/Users/mvillafuertem/.ivy2/cache/javax.annotation/javax.annotation-api/ivy-1.3.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="1.3.2" rev-constraint-default="1.3.2" rev-constraint-dynamic="1.3.2" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="javax.annotation-api" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="42279" time="547" location="/Users/mvillafuertem/.ivy2/cache/javax.annotation/javax.annotation-api/srcs/javax.annotation-api-1.3.2-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework" name="spring-core">
+			<revision name="5.0.9.RELEASE" status="release" pubdate="20180907155434" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/spring-projects/spring-framework" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="11">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="3870" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-core/ivy-5.0.9.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/spring-core/5.0.9.RELEASE/spring-core-5.0.9.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="5.0.9.RELEASE" rev-constraint-default="5.0.9.RELEASE" rev-constraint-dynamic="5.0.9.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-core" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="805066" time="998" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-core/srcs/spring-core-5.0.9.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/spring-core/5.0.9.RELEASE/spring-core-5.0.9.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.springframework" name="spring-jcl">
+			<revision name="5.0.9.RELEASE" status="release" pubdate="20180907155604" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/spring-projects/spring-framework" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="29">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="2816" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-jcl/ivy-5.0.9.RELEASE.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/springframework/spring-jcl/5.0.9.RELEASE/spring-jcl-5.0.9.RELEASE.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="5.0.9.RELEASE" rev-constraint-default="5.0.9.RELEASE" rev-constraint-dynamic="5.0.9.RELEASE" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="spring-jcl" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="10018" time="466" location="/Users/mvillafuertem/.ivy2/cache/org.springframework/spring-jcl/srcs/spring-jcl-5.0.9.RELEASE-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/springframework/spring-jcl/5.0.9.RELEASE/spring-jcl-5.0.9.RELEASE-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.slf4j" name="jul-to-slf4j">
+			<revision name="1.7.25" status="release" pubdate="20170316173746" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.slf4j.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="6">
+				<license name="MIT License" url="http://www.opensource.org/licenses/mit-license.php"/>
+				<metadata-artifact status="no" details="" size="5254" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.slf4j/jul-to-slf4j/ivy-1.7.25.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/slf4j/jul-to-slf4j/1.7.25/jul-to-slf4j-1.7.25.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="1.7.25" rev-constraint-default="1.7.25" rev-constraint-dynamic="1.7.25" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="jul-to-slf4j" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="4872" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.slf4j/jul-to-slf4j/srcs/jul-to-slf4j-1.7.25-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/slf4j/jul-to-slf4j/1.7.25/jul-to-slf4j-1.7.25-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.slf4j" name="slf4j-api">
+			<revision name="1.7.25" status="release" pubdate="20170316173632" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.slf4j.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="17">
+				<metadata-artifact status="no" details="" size="5287" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.slf4j/slf4j-api/ivy-1.7.25.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="1.7.25" rev-constraint-default="1.7.25" rev-constraint-dynamic="1.7.25" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="slf4j-api" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="55539" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.slf4j/slf4j-api/srcs/slf4j-api-1.7.25-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.module" name="jackson-module-parameter-names">
+			<revision name="2.9.6" status="release" pubdate="20180612063148" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="5">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="29705" time="0" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.module/jackson-module-parameter-names/ivy-2.9.6.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/jackson/module/jackson-module-parameter-names/2.9.6/jackson-module-parameter-names-2.9.6.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.9.6" rev-constraint-default="2.9.6" rev-constraint-dynamic="2.9.6" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="jackson-module-parameter-names" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="4702" time="378" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.module/jackson-module-parameter-names/srcs/jackson-module-parameter-names-2.9.6-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/jackson/module/jackson-module-parameter-names/2.9.6/jackson-module-parameter-names-2.9.6-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.datatype" name="jackson-datatype-jdk8">
+			<revision name="2.9.6" status="release" pubdate="20180612063328" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="4">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="29076" time="0" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.datatype/jackson-datatype-jdk8/ivy-2.9.6.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.9.6/jackson-datatype-jdk8-2.9.6.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.9.6" rev-constraint-default="2.9.6" rev-constraint-dynamic="2.9.6" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="jackson-datatype-jdk8" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="19320" time="206" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.datatype/jackson-datatype-jdk8/srcs/jackson-datatype-jdk8-2.9.6-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.9.6/jackson-datatype-jdk8-2.9.6-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.tomcat" name="tomcat-annotations-api">
+			<revision name="8.5.34" status="release" pubdate="20180905003312" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://tomcat.apache.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="3">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2514" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.apache.tomcat/tomcat-annotations-api/ivy-8.5.34.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-annotations-api/8.5.34/tomcat-annotations-api-8.5.34.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="8.5.34" rev-constraint-default="8.5.34" rev-constraint-dynamic="8.5.34" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="tomcat-annotations-api" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="16532" time="518" location="/Users/mvillafuertem/.ivy2/cache/org.apache.tomcat/tomcat-annotations-api/srcs/tomcat-annotations-api-8.5.34-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-annotations-api/8.5.34/tomcat-annotations-api-8.5.34-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.datatype" name="jackson-datatype-jsr310">
+			<revision name="2.9.6" status="release" pubdate="20180612063550" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="2">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="29370" time="0" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/ivy-2.9.6.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.9.6/jackson-datatype-jsr310-2.9.6.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.9.6" rev-constraint-default="2.9.6" rev-constraint-dynamic="2.9.6" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="jackson-datatype-jsr310" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="66751" time="216" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/srcs/jackson-datatype-jsr310-2.9.6-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.9.6/jackson-datatype-jsr310-2.9.6-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-databind">
+			<revision name="2.9.6" status="release" pubdate="20180612031528" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://github.com/FasterXML/jackson" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="35">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="23250" time="0" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/ivy-2.9.6.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.9.6/jackson-databind-2.9.6.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.9.6" rev-constraint-default="2.9.6" rev-constraint-dynamic="2.9.6" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="jackson-databind" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="994268" time="1132" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/srcs/jackson-databind-2.9.6-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.9.6/jackson-databind-2.9.6-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-core">
+			<revision name="2.9.6" status="release" pubdate="20180612025451" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/FasterXML/jackson-core" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="23">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="22538" time="0" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/ivy-2.9.6.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.9.6/jackson-core-2.9.6.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.9.6" rev-constraint-default="2.9.6" rev-constraint-dynamic="2.9.6" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="jackson-core" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="335596" time="701" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/srcs/jackson-core-2.9.6-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.9.6/jackson-core-2.9.6-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-annotations">
+			<revision name="2.9.0" status="release" pubdate="20170730055340" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://github.com/FasterXML/jackson" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="18">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="6969" time="0" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/ivy-2.9.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.9.0" rev-constraint-default="2.9.0" rev-constraint-dynamic="2.9.0" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="jackson-annotations" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="68177" time="547" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/srcs/jackson-annotations-2.9.0-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.hibernate.validator" name="hibernate-validator">
+			<revision name="6.0.12.Final" status="release" pubdate="20180810181157" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="1">
+				<license name="Apache License 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="29051" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.hibernate.validator/hibernate-validator/ivy-6.0.12.Final.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/hibernate/validator/hibernate-validator/6.0.12.Final/hibernate-validator-6.0.12.Final.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="6.0.12.Final" rev-constraint-default="6.0.12.Final" rev-constraint-dynamic="6.0.12.Final" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="hibernate-validator" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="824597" time="550" location="/Users/mvillafuertem/.ivy2/cache/org.hibernate.validator/hibernate-validator/srcs/hibernate-validator-6.0.12.Final-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/hibernate/validator/hibernate-validator/6.0.12.Final/hibernate-validator-6.0.12.Final-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml" name="classmate">
+			<revision name="1.3.4" status="release" pubdate="20170909234804" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://github.com/FasterXML/java-classmate" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="22">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="5725" time="0" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml/classmate/ivy-1.3.4.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/fasterxml/classmate/1.3.4/classmate-1.3.4.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="1.3.4" rev-constraint-default="1.3.4" rev-constraint-dynamic="1.3.4" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="classmate" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="47914" time="548" location="/Users/mvillafuertem/.ivy2/cache/com.fasterxml/classmate/srcs/classmate-1.3.4-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/fasterxml/classmate/1.3.4/classmate-1.3.4-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.jboss.logging" name="jboss-logging">
+			<revision name="3.3.2.Final" status="release" pubdate="20180214222338" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.jboss.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="21">
+				<license name="Apache License, version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="9486" time="0" location="/Users/mvillafuertem/.ivy2/cache/org.jboss.logging/jboss-logging/ivy-3.3.2.Final.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="3.3.2.Final" rev-constraint-default="3.3.2.Final" rev-constraint-dynamic="3.3.2.Final" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="jboss-logging" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="55328" time="543" location="/Users/mvillafuertem/.ivy2/cache/org.jboss.logging/jboss-logging/srcs/jboss-logging-3.3.2.Final-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="javax.validation" name="validation-api">
+			<revision name="2.0.1.Final" status="release" pubdate="20171219172341" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://beanvalidation.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="0">
+				<license name="Apache License 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3427" time="0" location="/Users/mvillafuertem/.ivy2/cache/javax.validation/validation-api/ivy-2.0.1.Final.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/javax/validation/validation-api/2.0.1.Final/validation-api-2.0.1.Final.pom"/>
+				<caller organisation="default" name="product-management-service$sources" conf="test, compile, runtime" rev="2.0.1.Final" rev-constraint-default="2.0.1.Final" rev-constraint-dynamic="2.0.1.Final" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="validation-api" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="97838" time="252" location="/Users/mvillafuertem/.ivy2/cache/javax.validation/validation-api/srcs/validation-api-2.0.1.Final-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/javax/validation/validation-api/2.0.1.Final/validation-api-2.0.1.Final-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>
