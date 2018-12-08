@@ -1,4 +1,4 @@
-package com.mvillafuertem.services.email.application
+package com.mvillafuertem.services.email.actors
 
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 

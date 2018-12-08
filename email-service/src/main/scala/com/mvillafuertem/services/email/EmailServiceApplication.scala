@@ -1,38 +1,41 @@
 package com.mvillafuertem.services.email
 
-import akka.actor.{Actor, ActorSystem, Props}
+import akka.actor.ActorSystem
+import akka.http.scaladsl.Http
+import akka.stream.ActorMaterializer
+import com.mvillafuertem.services.email.api.EmailController
+import com.mvillafuertem.services.email.application.{FindEmail, SendEmail}
+import com.typesafe.config.ConfigFactory
+
+import scala.concurrent.ExecutionContextExecutor
+import scala.io.StdIn
 
 object EmailServiceApplication extends App {
 
-  val actorSystem = ActorSystem("firtsActorSystem")
 
-  println(actorSystem)
+  override def main(args: Array[String]): Unit = {
 
-  class WordCountActor extends Actor {
+    val applicationConfiguration = ConfigFactory.load("")
+    val serverConfiguration = ConfigFactory.load("")
 
-    var totalWords = 0
 
-    override def receive: Receive = {
-      case message: String =>
-        println(s"[word counter] I have received: ${message.toString}")
-        totalWords += message.split(" ").length
-      case message => println(s"[word counter] I cannot undertand ${message.toString}")
-    }
+    val host = serverConfiguration.getString("")
+    val port = serverConfiguration.getInt("")
+
+    implicit val actorSystem: ActorSystem = ActorSystem(applicationConfiguration.getString(""))
+    implicit val materializer: ActorMaterializer = ActorMaterializer()
+    implicit val executionContext: ExecutionContextExecutor = actorSystem.dispatcher
+
+    val routes = new EmailController(new SendEmail, new FindEmail)
+
+    val bindingFuture = Http().bindAndHandle(routes.emailRoutes, host, port)
+
+
+    StdIn.readLine()
+
+    bindingFuture
+      .flatMap(_.unbind())
+      .onComplete(_ => actorSystem.terminate())
+
   }
-
-  val wordCounter = actorSystem.actorOf(Props[WordCountActor], "wordCounter")
-  val anotherCounter = actorSystem.actorOf(Props[WordCountActor], "anotherWordCounter")
-
-  wordCounter ! "I am Learning Akka and it's pretty damn cool!"
-  anotherCounter ! "A different message!"
-
-  class Person(name: String) extends Actor {
-    override def receive: Receive = {
-      case "hi" => println(s"Hi, my name is $name")
-    }
-  }
-
-  val person = actorSystem.actorOf(Props(new Person("Bob")))
-
-  person ! "hi"
 }
