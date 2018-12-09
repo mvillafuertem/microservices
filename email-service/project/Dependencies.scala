@@ -7,6 +7,7 @@ object Dependencies {
     val akka = "2.5.12"
     val akkaHttp = "10.1.5"
     val spray = "1.3.5"
+    val kafka = "1.0-M1"
   }
 
   val production = Seq(
@@ -15,6 +16,7 @@ object Dependencies {
     "com.typesafe.akka" %% "akka-http" % Versions.akkaHttp,
     "com.typesafe.akka" %% "akka-http-spray-json" % Versions.akkaHttp,
     "com.typesafe.akka" %% "akka-stream" % Versions.akka,
+    "com.typesafe.akka" %% "akka-stream-kafka" % Versions.kafka,
 
     // Spray
     "io.spray" %% "spray-json" % Versions.spray

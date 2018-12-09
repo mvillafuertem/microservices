@@ -15,14 +15,14 @@ object EmailServiceApplication extends App {
 
   override def main(args: Array[String]): Unit = {
 
-    val applicationConfiguration = ConfigFactory.load("")
-    val serverConfiguration = ConfigFactory.load("")
+    val applicationConfiguration = ConfigFactory.load("application")
+
+    val host = applicationConfiguration.getString("server.host")
+    val port = applicationConfiguration.getInt("server.port")
+    val actorSystemName = applicationConfiguration.getString("actor-system-name")
 
 
-    val host = serverConfiguration.getString("")
-    val port = serverConfiguration.getInt("")
-
-    implicit val actorSystem: ActorSystem = ActorSystem(applicationConfiguration.getString(""))
+    implicit val actorSystem: ActorSystem = ActorSystem(actorSystemName)
     implicit val materializer: ActorMaterializer = ActorMaterializer()
     implicit val executionContext: ExecutionContextExecutor = actorSystem.dispatcher
 
@@ -30,7 +30,7 @@ object EmailServiceApplication extends App {
 
     val bindingFuture = Http().bindAndHandle(routes.emailRoutes, host, port)
 
-
+    println("Started EmailServiceApplication...")
     StdIn.readLine()
 
     bindingFuture

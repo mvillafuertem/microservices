@@ -1,7 +1,6 @@
-package com.mvillafuertem.services.email.configuration
+package com.mvillafuertem.services.email.actors
 
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
-import com.mvillafuertem.services.email.configuration.ActorExercises.Person.LivetheLife
 
 object ActorExercises extends App {
 
@@ -105,10 +104,3 @@ object ActorExercises extends App {
   person ! LivetheLife(account)
 
 }
-
-
-
-
-
-
-
