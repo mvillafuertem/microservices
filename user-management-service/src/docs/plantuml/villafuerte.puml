@@ -1,0 +1,34 @@
+@startuml
+
+
+skinparam Component {
+	BackgroundColor #F4F4F4
+	FontName Avenir
+	ArrowColor #004581
+	BorderColor #004581
+}
+
+skinparam Package {
+    BackgroundColor #f0c0e0
+		BorderColor #004581
+}
+
+skinparam Node {
+	BackgroundColor #c0e0f0
+	BorderColor #004581
+}
+skinparam Database {
+  BackgroundColor #e0f0c0
+	BorderColor #004581
+}
+
+skinparam Folder {
+  BackgroundColor #DDD
+	BorderColor #004581
+}
+skinparam Frame {
+  BackgroundColor #f0e0c0
+	BorderColor #004581
+}
+
+@enduml

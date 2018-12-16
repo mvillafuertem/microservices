@@ -1,0 +1,77 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.0.RC1'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+apply from: 'gradle/docs.gradle'
+
+group = 'com.mvillafuertem'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+
+ext {
+	springCloudVersion = 'Finchley.BUILD-SNAPSHOT'
+}
+
+dependencies {
+	// Swagger
+	compile('io.springfox:springfox-swagger-ui:2.8.0')
+	compile('io.springfox:springfox-swagger2:2.8.0')
+	// My Batis
+	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1')
+	// Spring Boot
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+    optional('org.springframework.boot:spring-boot-configuration-processor')
+    //compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+	// Lombok
+	compileOnly('org.projectlombok:lombok')
+	runtime('com.h2database:h2')
+	runtime('mysql:mysql-connector-java')
+    // MongoDB Embed
+	testCompile('cz.jirutka.spring:embedmongo-spring:1.3.1')
+    // Spring Boot Test
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.cloud:spring-cloud-contract-wiremock')
+	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+	//testCompile('org.springframework.security:spring-security-test')
+    // AssertJ
+    testCompile('org.assertj:assertj-core:3.9.0')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+compileJava.dependsOn(processResources)
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.5.1'
+    //distributionUrl = distributionUrl.replace("bin", "all")
+}

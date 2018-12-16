@@ -1,0 +1,22 @@
+= Microservices
+include::attributes.adoc[]
+
+
+PoC
+
+
+Welcome to the Microservices!
+
+[horizontal]
+<<src/docs/asciidoc/docker-infrastructure.adoc#docker-infrastructure,Infrastructure>> :: Infrastructure with Docker
+
+[plantuml, diagrama, svg, align="center"]
+.User Microservice
+----
+
+include::src/docs/plantuml/usermicroservice.puml[]
+
+----
+
+
+include::src/docs/asciidoc/docker-infrastructure.adoc[]

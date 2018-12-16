@@ -1,0 +1,48 @@
+spring:
+  profiles:
+    active: "Production"
+  application:
+      name: "User Management Service"
+# MongoDB
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: admin
+      username: foouser
+      password: foopwd
+# RelationalDB
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name:
+# Aspect
+  aop:
+    auto: false
+
+infrastructure:
+  mongo:
+    database:
+    uri:
+  relational:
+    datasource:
+      url:
+      username:
+      password:
+      driver-class-name:
+
+info:
+  app:
+    name: "User Management Service"
+    description: "This is my first spring boot application"
+    version: "1.0.0"
+
+#management:
+#  endpoints:
+#    web:
+#      expose: "*"
+
+logging:
+  level:
+    com.mvillafuertem.usermanagementservice.rest.controller.UserController: DEBUG

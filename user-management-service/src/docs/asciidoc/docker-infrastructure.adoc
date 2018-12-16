@@ -1,0 +1,97 @@
+[[docker-infrastructure]]
+= Docker Infrastructure
+
+[[mongodb]]
+== MongoDB
+
+
+[source, bash, numbered, indent=0]
+[subs="verbatim,quotes"]
+.User Microservice
+----
+
+$ docker ps
+
+$ docker pull mongo
+
+Using default tag: latest
+latest: Pulling from library/mongo
+4d0d76e05f3c: Already exists
+2da2ecd7fdbd: Already exists
+c3a86da34d0f: Already exists
+e2b1f447e420: Already exists
+c9e820834b36: Already exists
+ffa34fa64bf4: Already exists
+45ba5a2a5216: Pull complete
+6024791f7c87: Pull complete
+796e396ed72c: Pull complete
+a4ac33c0a702: Pull complete
+Digest: sha256:89672f72dde6ec88618fcfa2fd11a45d147cbd7df97573c227ff8d80131c3c53
+Status: Downloaded newer image for mongo:latest
+
+$ docker images
+
+REPOSITORY                TAG                        IMAGE ID            CREATED             SIZE
+mongo                     latest                     f93ff881751f        8 days ago          368MB
+
+$ docker run --name mymongo --restart=always -d -p 27017:27017 mongo
+
+1d2cc16549d7b1603acf4fbeef328ee2242af7e2a373e499477a165712471e4e
+
+$ docker ps
+
+CONTAINER ID        IMAGE                  COMMAND                  CREATED              STATUS              PORTS                                                                                                                      NAMES
+1d2cc16549d7        mongo                  "docker-entrypoint..."   About a minute ago   Up About a minute   0.0.0.0:27017->27017/tcp
+
+$ docker exec -it 1d2cc16549d7 /bin/bash
+
+root@1d2cc16549d7:/#
+
+$ mongo
+
+MongoDB shell version v3.6.5
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.6.5
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+	http://docs.mongodb.org/
+Questions? Try the support group
+	http://groups.google.com/group/mongodb-user
+Server has startup warnings:
+2018-06-01T16:52:42.247+0000 I STORAGE  [initandlisten]
+2018-06-01T16:52:42.247+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2018-06-01T16:52:42.247+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2018-06-01T16:52:42.806+0000 I CONTROL  [initandlisten]
+2018-06-01T16:52:42.806+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2018-06-01T16:52:42.806+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2018-06-01T16:52:42.806+0000 I CONTROL  [initandlisten]
+
+$ use admin
+
+switched to db admin
+
+$ show users or db.getUsers()
+
+[ ]
+
+$ db.createUser({
+  	user:"foouser",
+  	pwd:"foopwd",
+  	roles:[{
+  		role:"root",
+  		db:"admin"
+  	}]
+  })
+
+Successfully added user: {
+	"user" : "foouser",
+	"roles" : [
+		{
+			"role" : "root",
+			"db" : "admin"
+		}
+	]
+}
+
+----
