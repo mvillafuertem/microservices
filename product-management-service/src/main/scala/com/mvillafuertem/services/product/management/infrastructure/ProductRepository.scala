@@ -1,4 +1,4 @@
-package com.mvillafuertem.product.management.infrastructure
+package com.mvillafuertem.services.product.management.infrastructure
 
 import com.mvillafuertem.product.management.configuration.ProductProperties
 import com.mvillafuertem.product.management.domain.Product

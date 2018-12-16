@@ -1,4 +1,4 @@
-package com.mvillafuertem.product.management.domain
+package com.mvillafuertem.services.product.management.domain
 
 import scala.beans.BeanProperty
 

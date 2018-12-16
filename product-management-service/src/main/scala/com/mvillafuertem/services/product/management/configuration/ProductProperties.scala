@@ -1,4 +1,4 @@
-package com.mvillafuertem.product.management.configuration
+package com.mvillafuertem.services.product.management.configuration
 
 import javax.validation.constraints.NotNull
 import org.springframework.boot.context.properties.ConfigurationProperties
