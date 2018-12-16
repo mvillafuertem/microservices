@@ -1,0 +1,7 @@
+package com.mvillafuertem.services.authentication.management.infrastructure
+
+import com.mvillafuertem.services.authentication.management.domain.repository.AuthenticationManagementRepository
+
+final class MariaDBAuthenticationManagementRepository extends AuthenticationManagementRepository{
+
+}
