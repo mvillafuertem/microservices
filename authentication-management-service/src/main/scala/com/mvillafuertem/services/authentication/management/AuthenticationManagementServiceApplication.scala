@@ -6,7 +6,7 @@ import com.mvillafuertem.services.authentication.management.configuration.infras
 import com.mvillafuertem.services.authentication.management.configuration.{AuthenticationManagementConfiguration, AuthenticationManagementProperties}
 import com.typesafe.config.ConfigFactory
 
-object AuthenticationManagementService extends App {
+object AuthenticationManagementServiceApplication extends App {
 
   override def main(args: Array[String]): Unit = {
 
