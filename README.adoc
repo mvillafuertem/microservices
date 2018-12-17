@@ -1,22 +1,11 @@
 = Microservices
 include::attributes.adoc[]
 
-
-PoC
-
-
 Welcome to the Microservices!
 
 [horizontal]
-<<src/docs/asciidoc/docker-infrastructure.adoc#docker-infrastructure,Infrastructure>> :: Infrastructure with Docker
-
-[plantuml, diagrama, svg, align="center"]
-.User Microservice
-----
-
-include::src/docs/plantuml/usermicroservice.puml[]
-
-----
-
-
-include::src/docs/asciidoc/docker-infrastructure.adoc[]
+<<authentication-management-service/authentication-management-service.adoc#authentication-management-service,Authentication Management Service>> :: Control access
+<<email-service/email-service.adoc#email-service,Email Service>> :: Send email
+<<loyalty-program-service/loyalty-program-service.adoc#loyalty-program-service,Loyalty Program Service>> :: Rewards program offered
+<<product-management-service/product-management-service.adoc#product-management-service,Product Management Service>> :: Products
+<<user-management-service/user-management-service.adoc#user-management-service,User Management Service>> :: User identities
