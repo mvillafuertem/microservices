@@ -3,9 +3,28 @@ include::attributes.adoc[]
 
 Welcome to the Microservices!
 
+
+== Services
+
 [horizontal]
 <<authentication-management-service/authentication-management-service.adoc#authentication-management-service,Authentication Management Service>> :: Control access
 <<email-service/email-service.adoc#email-service,Email Service>> :: Send email
 <<loyalty-program-service/loyalty-program-service.adoc#loyalty-program-service,Loyalty Program Service>> :: Rewards program offered
 <<product-management-service/product-management-service.adoc#product-management-service,Product Management Service>> :: Products
 <<user-management-service/user-management-service.adoc#user-management-service,User Management Service>> :: User identities
+
+
+== Data
+
+[horizontal]
+<<monitoring/monitoring.adoc#,Cassandra>> :: Cassandra
+<<monitoring/monitoring.adoc#,Redis>> :: Redis
+<<monitoring/monitoring.adoc#,Kafka>> :: Kafka
+
+
+== Infrastructure
+
+[horizontal]
+<<kubernetes/kubernetes.adoc#,Kubernetes>> :: Containers
+<<monitoring/monitoring.adoc#,Grafana>> :: Dashboard
+<<monitoring/monitoring.adoc#,Prometheus>> :: AlertManager, PushGateway

@@ -1,0 +1,398 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"prometheus.io/scrape":"true"},"labels":{"app":"prometheus","component":"core"},"name":"prometheus","namespace":"monitoring"},"spec":{"ports":[{"name":"webui","port":9090,"protocol":"TCP"}],"selector":{"app":"prometheus","component":"core"},"type":"NodePort"}}
+    prometheus.io/scrape: "true"
+  labels:
+    app: prometheus
+    component: core
+  name: prometheus
+  namespace: monitoring
+spec:
+  clusterIP: 10.111.252.33
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: webui
+    nodePort: 31811
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: prometheus
+    component: core
+  sessionAffinity: None
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"extensions/v1beta1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"prometheus","component":"core"},"name":"prometheus-core","namespace":"monitoring"},"spec":{"replicas":1,"template":{"metadata":{"labels":{"app":"prometheus","component":"core"},"name":"prometheus-main"},"spec":{"containers":[{"args":["-storage.local.retention=12h","-storage.local.memory-chunks=500000","-config.file=/etc/prometheus/prometheus.yaml","-alertmanager.url=http://alertmanager:9093/"],"image":"prom/prometheus:v1.7.0","name":"prometheus","ports":[{"containerPort":9090,"name":"webui"}],"resources":{"limits":{"cpu":"500m","memory":"500M"},"requests":{"cpu":"500m","memory":"500M"}},"volumeMounts":[{"mountPath":"/etc/prometheus","name":"config-volume"},{"mountPath":"/etc/prometheus-rules","name":"rules-volume"}]}],"serviceAccountName":"prometheus-k8s","volumes":[{"configMap":{"name":"prometheus-core"},"name":"config-volume"},{"configMap":{"name":"prometheus-rules"},"name":"rules-volume"}]}}}}
+  labels:
+    app: prometheus
+    component: core
+  name: prometheus-core
+  namespace: monitoring
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: prometheus
+      component: core
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: prometheus
+        component: core
+      name: prometheus-main
+    spec:
+      containers:
+      - args:
+        - -storage.local.retention=12h
+        - -storage.local.memory-chunks=500000
+        - -config.file=/etc/prometheus/prometheus.yaml
+        - -alertmanager.url=http://alertmanager:9093/
+        image: prom/prometheus:v1.7.0
+        imagePullPolicy: IfNotPresent
+        name: prometheus
+        ports:
+        - containerPort: 9090
+          name: webui
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500M
+          requests:
+            cpu: 500m
+            memory: 500M
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/prometheus
+          name: config-volume
+        - mountPath: /etc/prometheus-rules
+          name: rules-volume
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: prometheus-k8s
+      serviceAccountName: prometheus-k8s
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: prometheus-core
+        name: config-volume
+      - configMap:
+          defaultMode: 420
+          name: prometheus-rules
+        name: rules-volume
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    deprecated.daemonset.template.generation: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"extensions/v1beta1","kind":"DaemonSet","metadata":{"annotations":{},"labels":{"app":"prometheus","component":"node-exporter"},"name":"prometheus-node-exporter","namespace":"monitoring"},"spec":{"template":{"metadata":{"labels":{"app":"prometheus","component":"node-exporter"},"name":"prometheus-node-exporter"},"spec":{"containers":[{"image":"prom/node-exporter:v0.14.0","name":"prometheus-node-exporter","ports":[{"containerPort":9100,"hostPort":9100,"name":"prom-node-exp"}]}],"hostNetwork":true,"hostPID":true}}}}
+  labels:
+    app: prometheus
+    component: node-exporter
+  name: prometheus-node-exporter
+  namespace: monitoring
+spec:
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: prometheus
+      component: node-exporter
+  template:
+    metadata:
+      labels:
+        app: prometheus
+        component: node-exporter
+      name: prometheus-node-exporter
+    spec:
+      containers:
+      - image: prom/node-exporter:v0.14.0
+        imagePullPolicy: IfNotPresent
+        name: prometheus-node-exporter
+        ports:
+        - containerPort: 9100
+          hostPort: 9100
+          name: prom-node-exp
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      hostNetwork: true
+      hostPID: true
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  updateStrategy:
+    type: OnDelete
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"prometheus.io/scrape":"true"},"labels":{"app":"prometheus","component":"node-exporter"},"name":"prometheus-node-exporter","namespace":"monitoring"},"spec":{"clusterIP":"None","ports":[{"name":"prometheus-node-exporter","port":9100,"protocol":"TCP"}],"selector":{"app":"prometheus","component":"node-exporter"},"type":"ClusterIP"}}
+    prometheus.io/scrape: "true"
+  labels:
+    app: prometheus
+    component: node-exporter
+  name: prometheus-node-exporter
+  namespace: monitoring
+spec:
+  clusterIP: None
+  ports:
+  - name: prometheus-node-exporter
+    port: 9100
+    protocol: TCP
+    targetPort: 9100
+  selector:
+    app: prometheus
+    component: node-exporter
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+data:
+  prometheus.yaml: |
+    global:
+      scrape_interval: 10s
+      scrape_timeout: 10s
+      evaluation_interval: 10s
+    rule_files:
+      - "/etc/prometheus-rules/*.rules"
+    scrape_configs:
+
+      # https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml#L37
+      - job_name: 'kubernetes-nodes'
+        tls_config:
+          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        kubernetes_sd_configs:
+          - role: node
+        relabel_configs:
+          - source_labels: [__address__]
+            regex: '(.*):10250'
+            replacement: '${1}:10255'
+            target_label: __address__
+
+      # https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml#L79
+      - job_name: 'kubernetes-endpoints'
+        kubernetes_sd_configs:
+          - role: endpoints
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scrape]
+            action: keep
+            regex: true
+          - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scheme]
+            action: replace
+            target_label: __scheme__
+            regex: (https?)
+          - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_path]
+            action: replace
+            target_label: __metrics_path__
+            regex: (.+)
+          - source_labels: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]
+            action: replace
+            target_label: __address__
+            regex: (.+)(?::\d+);(\d+)
+            replacement: $1:$2
+          - action: labelmap
+            regex: __meta_kubernetes_service_label_(.+)
+          - source_labels: [__meta_kubernetes_namespace]
+            action: replace
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_service_name]
+            action: replace
+            target_label: kubernetes_name
+
+      # https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml#L119
+      - job_name: 'kubernetes-services'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        kubernetes_sd_configs:
+          - role: service
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_probe]
+            action: keep
+            regex: true
+          - source_labels: [__address__]
+            target_label: __param_target
+          - target_label: __address__
+            replacement: blackbox
+          - source_labels: [__param_target]
+            target_label: instance
+          - action: labelmap
+            regex: __meta_kubernetes_service_label_(.+)
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_service_name]
+            target_label: kubernetes_name
+
+      # https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml#L156
+      - job_name: 'kubernetes-pods'
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+            action: keep
+            regex: true
+          - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+            action: replace
+            target_label: __metrics_path__
+            regex: (.+)
+          - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+            action: replace
+            regex: (.+):(?:\d+);(\d+)
+            replacement: ${1}:${2}
+            target_label: __address__
+          - action: labelmap
+            regex: __meta_kubernetes_pod_label_(.+)
+          - source_labels: [__meta_kubernetes_namespace]
+            action: replace
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_pod_name]
+            action: replace
+            target_label: kubernetes_pod_name
+          - source_labels: [__meta_kubernetes_pod_container_port_number]
+            action: keep
+            regex: 9\d{3}
+
+      - job_name: 'kubernetes-cadvisor'
+        scheme: https
+        tls_config:
+          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        kubernetes_sd_configs:
+          - role: node
+        relabel_configs:
+          - action: labelmap
+          - action: labelmap
+            regex: __meta_kubernetes_node_label_(.+)
+          - target_label: __address__
+            replacement: kubernetes.default.svc:443
+          - source_labels: [__meta_kubernetes_node_name]
+            regex: (.+)
+            target_label: __metrics_path__
+            replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"prometheus.yaml":"global:\n  scrape_interval: 10s\n  scrape_timeout: 10s\n  evaluation_interval: 10s\nrule_files:\n  - \"/etc/prometheus-rules/*.rules\"\nscrape_configs:\n\n  # https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml#L37\n  - job_name: 'kubernetes-nodes'\n    tls_config:\n      ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt\n    bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token\n    kubernetes_sd_configs:\n      - role: node\n    relabel_configs:\n      - source_labels: [__address__]\n        regex: '(.*):10250'\n        replacement: '${1}:10255'\n        target_label: __address__\n\n  # https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml#L79\n  - job_name: 'kubernetes-endpoints'\n    kubernetes_sd_configs:\n      - role: endpoints\n    relabel_configs:\n      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scrape]\n        action: keep\n        regex: true\n      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scheme]\n        action: replace\n        target_label: __scheme__\n        regex: (https?)\n      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_path]\n        action: replace\n        target_label: __metrics_path__\n        regex: (.+)\n      - source_labels: [__address__, __meta_kubernetes_service_annotation_prometheus_io_port]\n        action: replace\n        target_label: __address__\n        regex: (.+)(?::\\d+);(\\d+)\n        replacement: $1:$2\n      - action: labelmap\n        regex: __meta_kubernetes_service_label_(.+)\n      - source_labels: [__meta_kubernetes_namespace]\n        action: replace\n        target_label: kubernetes_namespace\n      - source_labels: [__meta_kubernetes_service_name]\n        action: replace\n        target_label: kubernetes_name\n\n  # https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml#L119\n  - job_name: 'kubernetes-services'\n    metrics_path: /probe\n    params:\n      module: [http_2xx]\n    kubernetes_sd_configs:\n      - role: service\n    relabel_configs:\n      - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_probe]\n        action: keep\n        regex: true\n      - source_labels: [__address__]\n        target_label: __param_target\n      - target_label: __address__\n        replacement: blackbox\n      - source_labels: [__param_target]\n        target_label: instance\n      - action: labelmap\n        regex: __meta_kubernetes_service_label_(.+)\n      - source_labels: [__meta_kubernetes_namespace]\n        target_label: kubernetes_namespace\n      - source_labels: [__meta_kubernetes_service_name]\n        target_label: kubernetes_name\n\n  # https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus-kubernetes.yml#L156\n  - job_name: 'kubernetes-pods'\n    kubernetes_sd_configs:\n      - role: pod\n    relabel_configs:\n      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]\n        action: keep\n        regex: true\n      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]\n        action: replace\n        target_label: __metrics_path__\n        regex: (.+)\n      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]\n        action: replace\n        regex: (.+):(?:\\d+);(\\d+)\n        replacement: ${1}:${2}\n        target_label: __address__\n      - action: labelmap\n        regex: __meta_kubernetes_pod_label_(.+)\n      - source_labels: [__meta_kubernetes_namespace]\n        action: replace\n        target_label: kubernetes_namespace\n      - source_labels: [__meta_kubernetes_pod_name]\n        action: replace\n        target_label: kubernetes_pod_name\n      - source_labels: [__meta_kubernetes_pod_container_port_number]\n        action: keep\n        regex: 9\\d{3}\n\n  - job_name: 'kubernetes-cadvisor'\n    scheme: https\n    tls_config:\n      ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt\n    bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token\n    kubernetes_sd_configs:\n      - role: node\n    relabel_configs:\n      - action: labelmap\n      - action: labelmap\n        regex: __meta_kubernetes_node_label_(.+)\n      - target_label: __address__\n        replacement: kubernetes.default.svc:443\n      - source_labels: [__meta_kubernetes_node_name]\n        regex: (.+)\n        target_label: __metrics_path__\n        replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor\n"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":null,"name":"prometheus-core","namespace":"monitoring"}}
+  name: prometheus-core
+  namespace: monitoring
+---
+apiVersion: v1
+data:
+  cpu-usage.rules: |
+    ALERT NodeCPUUsage
+      IF (100 - (avg by (instance) (irate(node_cpu{name="node-exporter",mode="idle"}[5m])) * 100)) > 75
+      FOR 2m
+      LABELS {
+        severity="page"
+      }
+      ANNOTATIONS {
+        SUMMARY = "{{$labels.instance}}: High CPU usage detected",
+        DESCRIPTION = "{{$labels.instance}}: CPU usage is above 75% (current value is: {{ $value }})"
+      }
+  instance-availability.rules: |
+    ALERT InstanceDown
+      IF up == 0
+      FOR 1m
+      LABELS { severity = "page" }
+      ANNOTATIONS {
+        summary = "Instance {{ $labels.instance }} down",
+        description = "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute.",
+      }
+  low-disk-space.rules: |
+    ALERT NodeLowRootDisk
+      IF ((node_filesystem_size{mountpoint="/root-disk"} - node_filesystem_free{mountpoint="/root-disk"} ) / node_filesystem_size{mountpoint="/root-disk"} * 100) > 75
+      FOR 2m
+      LABELS {
+        severity="page"
+      }
+      ANNOTATIONS {
+        SUMMARY = "{{$labels.instance}}: Low root disk space",
+        DESCRIPTION = "{{$labels.instance}}: Root disk usage is above 75% (current value is: {{ $value }})"
+      }
+
+    ALERT NodeLowDataDisk
+      IF ((node_filesystem_size{mountpoint="/data-disk"} - node_filesystem_free{mountpoint="/data-disk"} ) / node_filesystem_size{mountpoint="/data-disk"} * 100) > 75
+      FOR 2m
+      LABELS {
+        severity="page"
+      }
+      ANNOTATIONS {
+        SUMMARY = "{{$labels.instance}}: Low data disk space",
+        DESCRIPTION = "{{$labels.instance}}: Data disk usage is above 75% (current value is: {{ $value }})"
+      }
+  mem-usage.rules: |
+    ALERT NodeSwapUsage
+      IF (((node_memory_SwapTotal-node_memory_SwapFree)/node_memory_SwapTotal)*100) > 75
+      FOR 2m
+      LABELS {
+        severity="page"
+      }
+      ANNOTATIONS {
+        SUMMARY = "{{$labels.instance}}: Swap usage detected",
+        DESCRIPTION = "{{$labels.instance}}: Swap usage usage is above 75% (current value is: {{ $value }})"
+      }
+
+    ALERT NodeMemoryUsage
+      IF (((node_memory_MemTotal-node_memory_MemFree-node_memory_Cached)/(node_memory_MemTotal)*100)) > 75
+      FOR 2m
+      LABELS {
+        severity="page"
+      }
+      ANNOTATIONS {
+        SUMMARY = "{{$labels.instance}}: High memory usage detected",
+        DESCRIPTION = "{{$labels.instance}}: Memory usage is above 75% (current value is: {{ $value }})"
+      }
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"cpu-usage.rules":"ALERT NodeCPUUsage\n  IF (100 - (avg by (instance) (irate(node_cpu{name=\"node-exporter\",mode=\"idle\"}[5m])) * 100)) \u003e 75\n  FOR 2m\n  LABELS {\n    severity=\"page\"\n  }\n  ANNOTATIONS {\n    SUMMARY = \"{{$labels.instance}}: High CPU usage detected\",\n    DESCRIPTION = \"{{$labels.instance}}: CPU usage is above 75% (current value is: {{ $value }})\"\n  }\n","instance-availability.rules":"ALERT InstanceDown\n  IF up == 0\n  FOR 1m\n  LABELS { severity = \"page\" }\n  ANNOTATIONS {\n    summary = \"Instance {{ $labels.instance }} down\",\n    description = \"{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute.\",\n  }\n","low-disk-space.rules":"ALERT NodeLowRootDisk\n  IF ((node_filesystem_size{mountpoint=\"/root-disk\"} - node_filesystem_free{mountpoint=\"/root-disk\"} ) / node_filesystem_size{mountpoint=\"/root-disk\"} * 100) \u003e 75\n  FOR 2m\n  LABELS {\n    severity=\"page\"\n  }\n  ANNOTATIONS {\n    SUMMARY = \"{{$labels.instance}}: Low root disk space\",\n    DESCRIPTION = \"{{$labels.instance}}: Root disk usage is above 75% (current value is: {{ $value }})\"\n  }\n\nALERT NodeLowDataDisk\n  IF ((node_filesystem_size{mountpoint=\"/data-disk\"} - node_filesystem_free{mountpoint=\"/data-disk\"} ) / node_filesystem_size{mountpoint=\"/data-disk\"} * 100) \u003e 75\n  FOR 2m\n  LABELS {\n    severity=\"page\"\n  }\n  ANNOTATIONS {\n    SUMMARY = \"{{$labels.instance}}: Low data disk space\",\n    DESCRIPTION = \"{{$labels.instance}}: Data disk usage is above 75% (current value is: {{ $value }})\"\n  }\n","mem-usage.rules":"ALERT NodeSwapUsage\n  IF (((node_memory_SwapTotal-node_memory_SwapFree)/node_memory_SwapTotal)*100) \u003e 75\n  FOR 2m\n  LABELS {\n    severity=\"page\"\n  }\n  ANNOTATIONS {\n    SUMMARY = \"{{$labels.instance}}: Swap usage detected\",\n    DESCRIPTION = \"{{$labels.instance}}: Swap usage usage is above 75% (current value is: {{ $value }})\"\n  }\n\nALERT NodeMemoryUsage\n  IF (((node_memory_MemTotal-node_memory_MemFree-node_memory_Cached)/(node_memory_MemTotal)*100)) \u003e 75\n  FOR 2m\n  LABELS {\n    severity=\"page\"\n  }\n  ANNOTATIONS {\n    SUMMARY = \"{{$labels.instance}}: High memory usage detected\",\n    DESCRIPTION = \"{{$labels.instance}}: Memory usage is above 75% (current value is: {{ $value }})\"\n  }\n"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":null,"name":"prometheus-rules","namespace":"monitoring"}}
+  name: prometheus-rules
+  namespace: monitoring---
+apiVersion: v1
+data:
+  ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM1ekNDQWMrZ0F3SUJBZ0lCQVRBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwdGFXNXAKYTNWaVpVTkJNQjRYRFRFNE1URXlOekUyTVRjeE1Gb1hEVEk0TVRFeU5URTJNVGN4TUZvd0ZURVRNQkVHQTFVRQpBeE1LYldsdWFXdDFZbVZEUVRDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBSzdpCk95a3ZpNFZtOXA4NVp0L1NoZUJ4TExKTkJmNzQ1K0R4Tk1jZytUY0dPT1prcUM3NzlMRWZnYi9CeFNRMnNOVGQKRHJFa09MZ3dEc1R1Q3g4ZDhkaHVOa1lQUlpCUnVtaVI1K3BhL0ZiVXpOS3BvRW9PUTlFUGI3YWN1cHJvQ3R5UgpQTFBjNnp0QmxNVWtnTjF2WkZpUmlnMzRXS3NHNDF3RytGSlhjZC9FVTJ6ZDhuRm9hYUZtN0NreDNkWkJkL1p3CmpGanRSRzQ2SWpCckVRNExBRWZMVCtwOHJoNnd5VllGeEErSFVuQWEvbW9rZU9tK0Rra0NmRXNtRGRlejhzb0QKcTlnRWMwVWdGQ2dGcEovUmo3a2FtRG5KOUFNTDBaeVI1MlVrNktFdGZRZjlrUGROY2JTL2VKWTBsMnBMQ3JGMgpoWWZ3ZWk2OXdpS0pOeUd5MzZFQ0F3RUFBYU5DTUVBd0RnWURWUjBQQVFIL0JBUURBZ0trTUIwR0ExVWRKUVFXCk1CUUdDQ3NHQVFVRkJ3TUNCZ2dyQmdFRkJRY0RBVEFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHQ1NxR1NJYjMKRFFFQkN3VUFBNElCQVFDaUZVMFlNY2xKSnJvaTk3bHZ4L2JFS282S0tyL1BDVE5vaTRHb1BDR2gzbWppckhISgpGTjdoY05aeEFBU3Y1aEp3TWNXMzBLS25Bd3hZcWxBR1JGVGkzdVlWaVVxeDlMdDNPWDhrQmpPU0h4Mzg1RkNLCnlwcVpPcDNHaTdUeStxT0tUeHQ4RFR0SEI1Y2puWG9qNnRMQmxDaFc3TldtRWZLbEVzNWFCLzVQcnRSbmNWUHgKdW5RRGJhZjJNT0NLekh2WGlRNitueStJQW9UTzg4N3Myai82STBKVWd5cGdlOTcrbExtZU1ZaU80cnMzdDVoVwozTFFRYnF3NDBHWGljazdaSThJcnFMUk5McDRybGNzZkdGcXA3U1d4bXVFVlV6Vk9PWDlEcktjR1I3SmRLNzBXCnVuUzN6dTczUlJXUjVNRDZBdTNXaktJRE1tUXpQVWZFb0owTgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+  namespace: bW9uaXRvcmluZw==
+  token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklpSjkuZXlKcGMzTWlPaUpyZFdKbGNtNWxkR1Z6TDNObGNuWnBZMlZoWTJOdmRXNTBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5dVlXMWxjM0JoWTJVaU9pSnRiMjVwZEc5eWFXNW5JaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpXTnlaWFF1Ym1GdFpTSTZJbkJ5YjIxbGRHaGxkWE10YXpoekxYUnZhMlZ1TFdScWNXTm5JaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpYSjJhV05sTFdGalkyOTFiblF1Ym1GdFpTSTZJbkJ5YjIxbGRHaGxkWE10YXpoeklpd2lhM1ZpWlhKdVpYUmxjeTVwYnk5elpYSjJhV05sWVdOamIzVnVkQzl6WlhKMmFXTmxMV0ZqWTI5MWJuUXVkV2xrSWpvaU4yRmlZelV4WlRRdE1XSTFOUzB4TVdVNUxUZzBZbVF0TURnd01ESTNOemRrTXpFd0lpd2ljM1ZpSWpvaWMzbHpkR1Z0T25ObGNuWnBZMlZoWTJOdmRXNTBPbTF2Ym1sMGIzSnBibWM2Y0hKdmJXVjBhR1YxY3kxck9ITWlmUS5VYVBrc2tTRVZQeGpUa3lSdW9ZdzEza2JNUzNxZEdUNE9YV1A4eFRwZ2xLNHV1bmlpNWlLYm9YaXJWbXhncTJPc256dHpOa2tRUGphUkp2eGw2cnN5RjAxc25DYzYwVE9iYi1NelhHaXFFNU1qUVhMaTgwdWNtX09yMHRGUjZIM0JmRWRGcFNPWkUxVWpSUmkwS0dfX2VsVkNZQktWeXhMeW9ucjJ0aDJnRjUwRnh4Q3YycXhZOG4xUHNUQkYtblJhVjZSSTdvc0JHSE01d29iclp4WVpyenVXdE5fNTNIUWRXdXkxT0xxUlZjdHM4eEpjcTBqblIxaFZ1YjRsVUloekxhZUtIT0JfbzBlalJ5Wm9oSDFYN3FaYXRzQlN4YTdkc0xyQ1NVeVo1NC1HazhWMUViSE9uM1U3a3RpYW5ONUNTZzdtejRZVVk3WWNwdmNKcmpCZlE=
+kind: Secret
+metadata:
+  annotations:
+    kubernetes.io/service-account.name: prometheus-k8s
+    kubernetes.io/service-account.uid: 7abc51e4-1b55-11e9-84bd-08002777d310
+  creationTimestamp: 2019-01-18T19:15:55Z
+  name: prometheus-k8s-token-djqcg
+  namespace: monitoring
+  resourceVersion: "345552"
+  selfLink: /api/v1/namespaces/monitoring/secrets/prometheus-k8s-token-djqcg
+  uid: 7ac59c03-1b55-11e9-84bd-08002777d310
+type: kubernetes.io/service-account-token
+---

@@ -1,0 +1,163 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"extensions/v1beta1","kind":"Deployment","metadata":{"annotations":{},"name":"kube-state-metrics","namespace":"monitoring"},"spec":{"replicas":1,"template":{"metadata":{"labels":{"app":"kube-state-metrics"}},"spec":{"containers":[{"image":"gcr.io/google_containers/kube-state-metrics:v0.5.0","name":"kube-state-metrics","ports":[{"containerPort":8080}]}],"serviceAccountName":"kube-state-metrics"}}}}
+  labels:
+    app: kube-state-metrics
+  name: kube-state-metrics
+  namespace: monitoring
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: kube-state-metrics
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: kube-state-metrics
+    spec:
+      containers:
+      - image: gcr.io/google_containers/kube-state-metrics:v0.5.0
+        imagePullPolicy: IfNotPresent
+        name: kube-state-metrics
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: kube-state-metrics
+      serviceAccountName: kube-state-metrics
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    deprecated.daemonset.template.generation: "1"
+    description: |
+      This `DaemonSet` provides metrics in Prometheus format about disk usage on the nodes.
+      The container `read-du` reads in sizes of all directories below /mnt and writes that to `/tmp/metrics`. It only reports directories larger then `100M` for now.
+      The other container `caddy` just hands out the contents of that file on request via `http` on `/metrics` at port `9102` which are the defaults for Prometheus.
+      These are scheduled on every node in the Kubernetes cluster.
+      To choose directories from the node to check, just mount them on the `read-du` container below `/mnt`.
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"extensions/v1beta1","kind":"DaemonSet","metadata":{"annotations":{"description":"This `DaemonSet` provides metrics in Prometheus format about disk usage on the nodes.\nThe container `read-du` reads in sizes of all directories below /mnt and writes that to `/tmp/metrics`. It only reports directories larger then `100M` for now.\nThe other container `caddy` just hands out the contents of that file on request via `http` on `/metrics` at port `9102` which are the defaults for Prometheus.\nThese are scheduled on every node in the Kubernetes cluster.\nTo choose directories from the node to check, just mount them on the `read-du` container below `/mnt`.\n"},"name":"node-directory-size-metrics","namespace":"monitoring"},"spec":{"template":{"metadata":{"annotations":{"description":"This `Pod` provides metrics in Prometheus format about disk usage on the node.\nThe container `read-du` reads in sizes of all directories below /mnt and writes that to `/tmp/metrics`. It only reports directories larger then `100M` for now.\nThe other container `caddy` just hands out the contents of that file on request on `/metrics` at port `9102` which are the defaults for Prometheus.\nThis `Pod` is scheduled on every node in the Kubernetes cluster.\nTo choose directories from the node to check just mount them on `read-du` below `/mnt`.\n","prometheus.io/port":"9102","prometheus.io/scrape":"true"},"labels":{"app":"node-directory-size-metrics"}},"spec":{"containers":[{"command":["fish","--command","touch /tmp/metrics-temp\nwhile true\n  for directory in (du --bytes --separate-dirs --threshold=100M /mnt)\n    echo $directory | read size path\n    echo \"node_directory_size_bytes{path=\\\"$path\\\"} $size\" \\\n      \u003e\u003e /tmp/metrics-temp\n  end\n  mv /tmp/metrics-temp /tmp/metrics\n  sleep 300\nend\n"],"image":"giantswarm/tiny-tools","imagePullPolicy":"Always","name":"read-du","volumeMounts":[{"mountPath":"/mnt/var","name":"host-fs-var","readOnly":true},{"mountPath":"/tmp","name":"metrics"}]},{"command":["caddy","-port=9102","-root=/var/www"],"image":"dockermuenster/caddy:0.9.3","name":"caddy","ports":[{"containerPort":9102}],"volumeMounts":[{"mountPath":"/var/www","name":"metrics"}]}],"volumes":[{"hostPath":{"path":"/var"},"name":"host-fs-var"},{"emptyDir":{"medium":"Memory"},"name":"metrics"}]}}}}
+  labels:
+    app: node-directory-size-metrics
+  name: node-directory-size-metrics
+  namespace: monitoring
+spec:
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: node-directory-size-metrics
+  template:
+    metadata:
+      annotations:
+        description: |
+          This `Pod` provides metrics in Prometheus format about disk usage on the node.
+          The container `read-du` reads in sizes of all directories below /mnt and writes that to `/tmp/metrics`. It only reports directories larger then `100M` for now.
+          The other container `caddy` just hands out the contents of that file on request on `/metrics` at port `9102` which are the defaults for Prometheus.
+          This `Pod` is scheduled on every node in the Kubernetes cluster.
+          To choose directories from the node to check just mount them on `read-du` below `/mnt`.
+        prometheus.io/port: "9102"
+        prometheus.io/scrape: "true"
+      labels:
+        app: node-directory-size-metrics
+    spec:
+      containers:
+      - command:
+        - fish
+        - --command
+        - |
+          touch /tmp/metrics-temp
+          while true
+            for directory in (du --bytes --separate-dirs --threshold=100M /mnt)
+              echo $directory | read size path
+              echo "node_directory_size_bytes{path=\"$path\"} $size" \
+                >> /tmp/metrics-temp
+            end
+            mv /tmp/metrics-temp /tmp/metrics
+            sleep 300
+          end
+        image: giantswarm/tiny-tools
+        imagePullPolicy: Always
+        name: read-du
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /mnt/var
+          name: host-fs-var
+          readOnly: true
+        - mountPath: /tmp
+          name: metrics
+      - command:
+        - caddy
+        - -port=9102
+        - -root=/var/www
+        image: dockermuenster/caddy:0.9.3
+        imagePullPolicy: IfNotPresent
+        name: caddy
+        ports:
+        - containerPort: 9102
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/www
+          name: metrics
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /var
+          type: ""
+        name: host-fs-var
+      - emptyDir:
+          medium: Memory
+        name: metrics
+  updateStrategy:
+    type: OnDelete
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"prometheus.io/scrape":"true"},"labels":{"app":"kube-state-metrics"},"name":"kube-state-metrics","namespace":"monitoring"},"spec":{"ports":[{"name":"kube-state-metrics","port":8080,"protocol":"TCP"}],"selector":{"app":"kube-state-metrics"}}}
+    prometheus.io/scrape: "true"
+  labels:
+    app: kube-state-metrics
+  name: kube-state-metrics
+  namespace: monitoring
+spec:
+  clusterIP: 10.105.76.180
+  ports:
+  - name: kube-state-metrics
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: kube-state-metrics
+  sessionAffinity: None
+  type: ClusterIP
