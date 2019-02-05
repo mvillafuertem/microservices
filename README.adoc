@@ -28,3 +28,32 @@ Welcome to the Microservices!
 <<kubernetes/kubernetes.adoc#,Kubernetes>> :: Containers
 <<monitoring/monitoring.adoc#,Grafana>> :: Dashboard
 <<monitoring/monitoring.adoc#,Prometheus>> :: AlertManager, PushGateway
+
+
+
+=== Kafka for Mac
+
+
+[source, bash, numbered, indent=0]
+.Kafka Docker
+----
+
+http://wurstmeister.github.io/kafka-docker/
+
+# Edit Kafka HOST docker.for.mac.localhost
+vi docker-compose.yml
+
+# Init Shell
+./start-kafka-shell.sh  docker.for.mac.localhost docker.for.mac.localhost:2181
+
+# Create Topic
+$KAFKA_HOME/bin/kafka-topics.sh --create --topic akka --partitions 4 --zookeeper $ZK --replication-factor 1
+
+# Producer
+$KAFKA_HOME/bin/kafka-console-producer.sh --topic=akka --broker-list=`broker-list.sh`
+
+# Consumer
+$KAFKA_HOME/bin/kafka-console-consumer.sh --topic=akka --bootstrap-server=`broker-list.sh`
+
+
+----
