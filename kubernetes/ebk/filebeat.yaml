@@ -43,6 +43,8 @@ data:
       hosts: ['${ELASTICSEARCH_HOST:elasticsearch.monitoring.svc.cluster.local}:${ELASTICSEARCH_PORT:9200}']
       username: ${ELASTICSEARCH_USERNAME}
       password: ${ELASTICSEARCH_PASSWORD}
+      bulk_max_size: 200
+      pipeline: "test-pipeline"
 ---
 apiVersion: v1
 kind: ConfigMap
