@@ -1,0 +1,16 @@
+{
+  "pipeline": {
+    "description": "Pipeline for parsing GlobalAVL messages",
+    "processors": [
+      {
+        "grok": {
+          "field": "message",
+          "patterns": [
+            "\\A%{TIMESTAMP_ISO8601:timestamp}%{SPACE}%{LOGLEVEL:level}%{SPACE}%{NOTSPACE:thread}%{SPACE}%{NOTSPACE:class}%{SPACE}%{NOTSPACE}%{SPACE}%{JAVALOGMESSAGE:message}"
+          ],
+          "ignore_missing": true
+        }
+      }
+    ]
+  }
+}
