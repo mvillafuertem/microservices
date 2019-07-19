@@ -27,7 +27,7 @@
 // Math
 :stem: latexmath
 // Images
-:imagesdir: resources/images/
+// :imagesdir: resources/images/
 // UML
 :umldir: src/docs/plantuml/
 // Source
